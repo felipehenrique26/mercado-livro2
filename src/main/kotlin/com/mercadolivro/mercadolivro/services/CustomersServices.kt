@@ -35,6 +35,8 @@ class CustomersServices {
             customers.last().id!!.toInt() + 1
         }.toString()
 
+        usuario.id = id
+
         customers.add(usuario)
 
     }
