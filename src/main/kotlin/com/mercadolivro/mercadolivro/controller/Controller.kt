@@ -30,7 +30,7 @@ class Controller(val customersService: CustomersServices) {
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody usuario: PostRequestModel) {
 
-        return customersService.create(usuario.toCustomerModel())
+      customersService.create(usuario.toCustomerModel())
     }
 
     @PutMapping("/{id}")
