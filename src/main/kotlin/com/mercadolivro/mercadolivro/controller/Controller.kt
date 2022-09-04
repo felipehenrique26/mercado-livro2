@@ -1,7 +1,7 @@
 package com.mercadolivro.mercadolivro.controller
 
 import com.mercadolivro.mercadolivro.extension.toCustomerModel
-import com.mercadolivro.mercadolivro.model.Usuario
+import com.mercadolivro.mercadolivro.model.CustomersModel
 import com.mercadolivro.mercadolivro.request.PostRequestModel
 import com.mercadolivro.mercadolivro.request.PutRequestModel
 import com.mercadolivro.mercadolivro.services.CustomersServices
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("customer")
 class Controller(val customersService: CustomersServices) {
 
-    val customers = mutableListOf<Usuario>()
+    val customers = mutableListOf<CustomersModel>()
 
     @GetMapping()
-    fun getAll(@RequestParam name: String?): List<Usuario> {
+    fun getAll(@RequestParam name: String?): List<CustomersModel> {
 
         name?.let {
             return customers.filter { it.nome.contains(name,true) }
@@ -25,7 +25,7 @@ class Controller(val customersService: CustomersServices) {
     }
 
     @GetMapping("/{id}")
-    fun getCustomers(@PathVariable(name = "id") id: String): Usuario {
+    fun getCustomers(@PathVariable(name = "id") id: String): CustomersModel {
 
         return customersService.getCustomers(id)
     }
@@ -41,7 +41,7 @@ class Controller(val customersService: CustomersServices) {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     fun update(@PathVariable(name = "id") id: String, @RequestBody usuario: PutRequestModel) {
 
-        customersService.update(id, usuario)
+        customersService.update(usuario.toCustomerModel(id))
     }
 
     @DeleteMapping("/{id}")

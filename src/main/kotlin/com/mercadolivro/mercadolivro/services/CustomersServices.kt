@@ -1,23 +1,19 @@
 package com.mercadolivro.mercadolivro.services
 
-import com.mercadolivro.mercadolivro.model.Usuario
-import com.mercadolivro.mercadolivro.request.PostRequestModel
-import com.mercadolivro.mercadolivro.request.PutRequestModel
+import com.mercadolivro.mercadolivro.model.CustomersModel
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
 
 @Service
 class CustomersServices {
 
-    val customers = mutableListOf<Usuario>()
+    val customers = mutableListOf<CustomersModel>()
 
 
-    fun getmapping(): MutableList<Usuario> {
+    fun getmapping(): MutableList<CustomersModel> {
         return customers
     }
 
-    fun getCustomers(id: String): Usuario {
+    fun getCustomers(id: String): CustomersModel {
         /* var respostaCustomers = mutableListOf<Usuario>()
          if (customers.isNotEmpty()) {
              respostaCustomers = if (customers.get(0).id == codigo) {
@@ -30,23 +26,23 @@ class CustomersServices {
         return customers.filter { it.id == id }.first()
     }
 
-    fun create(usuario: Usuario) {
+    fun create(usuario: CustomersModel) {
 
 
         val id = if (customers.isEmpty()) {
             1
         } else {
-            customers.last().id.toInt() + 1
+            customers.last().id!!.toInt() + 1
         }.toString()
 
         customers.add(usuario)
 
     }
 
-    fun update( id: String, usuario: PutRequestModel) {
+    fun update(usuario: CustomersModel) {
 
 
-        customers.filter { it.id == id }.first().let {
+        customers.filter { it.id == usuario.id }.first().let {
             it.nome = usuario.nome
             it.email = usuario.email
 
