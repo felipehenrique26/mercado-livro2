@@ -1,8 +1,8 @@
 package com.mercadolivro.mercadolivro.model
 
 class Usuario (
-    var id: String ="",
+    var id: String? =null,
     var nome: String = "",
-    var idade: String = ""){
+    var email: String = ""){
 
 }
