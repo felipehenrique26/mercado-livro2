@@ -17,11 +17,7 @@ class Controller(val customersService: CustomersServices) {
     @GetMapping()
     fun getAll(@RequestParam name: String?): List<CustomersModel> {
 
-        name?.let {
-            return customers.filter { it.nome.contains(name,true) }
-        }
-
-        return customersService.getmapping()
+        return customersService.getmapping(name)
     }
 
     @GetMapping("/{id}")
