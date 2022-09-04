@@ -9,7 +9,12 @@ class CustomersServices {
     val customers = mutableListOf<CustomersModel>()
 
 
-    fun getmapping(): MutableList<CustomersModel> {
+    fun getmapping(name:String?): List<CustomersModel> {
+
+        name?.let {
+            return customers.filter { it.nome.contains(name,true) }
+        }
+
         return customers
     }
 
