@@ -10,7 +10,7 @@ fun PostRequestModel.toCustomerModel(): CustomersModel {
     return CustomersModel(nome = this.nome, email = this.email)
 }
 
-fun PutRequestModel.toCustomerModel(id:String): CustomersModel {
+fun PutRequestModel.toCustomerModel(id:Int): CustomersModel {
 
     return CustomersModel(id = id, nome = this.nome, email = this.email)
 }

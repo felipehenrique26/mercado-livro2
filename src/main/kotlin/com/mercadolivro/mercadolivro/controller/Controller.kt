@@ -15,13 +15,13 @@ class Controller(val customersService: CustomersServices) {
     val customers = mutableListOf<CustomersModel>()
 
     @GetMapping()
-    fun getAll(@RequestParam name: String?): List<CustomersModel> {
+    fun getAll(@RequestParam nome: String?): List<CustomersModel> {
 
-        return customersService.getmapping(name)
+        return customersService.getmapping(nome)
     }
 
     @GetMapping("/{id}")
-    fun getCustomers(@PathVariable(name = "id") id: String): CustomersModel {
+    fun getCustomers(@PathVariable(name = "id") id: Int): CustomersModel {
 
         return customersService.getCustomers(id)
     }
@@ -35,14 +35,14 @@ class Controller(val customersService: CustomersServices) {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun update(@PathVariable(name = "id") id: String, @RequestBody usuario: PutRequestModel) {
+    fun update(@PathVariable(name = "id") id: Int, @RequestBody usuario: PutRequestModel) {
 
         customersService.update(usuario.toCustomerModel(id))
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable id: String) {
+    fun delete(@PathVariable id: Int) {
       customersService.delete(id)
     }
 
