@@ -19,7 +19,7 @@ class CustomersServices(val customersRepository: CustomersRepository) {
         return customersRepository.findAll().toList()
     }
 
-    fun getCustomers(id: Int): CustomersModel {
+    fun getById(id: Int): CustomersModel {
         /* var respostaCustomers = mutableListOf<Usuario>()
          if (customers.isNotEmpty()) {
              respostaCustomers = if (customers.get(0).id == codigo) {
