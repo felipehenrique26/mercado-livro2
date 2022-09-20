@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("customer")
 class Controller(val customersService: CustomersServices) {
 
-    val customers = mutableListOf<CustomersModel>()
+    //val customers = mutableListOf<CustomersModel>()
 
     @GetMapping()
     fun getAll(@RequestParam nome: String?): List<CustomersModel> {

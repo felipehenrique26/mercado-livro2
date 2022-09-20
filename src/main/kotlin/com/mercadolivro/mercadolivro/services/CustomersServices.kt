@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 @Service
 class CustomersServices(val customersRepository: CustomersRepository) {
 
-    val customers = mutableListOf<CustomersModel>()
+    //val customers = mutableListOf<CustomersModel>()
 
 
     fun getmapping(nome:String?): List<CustomersModel> {

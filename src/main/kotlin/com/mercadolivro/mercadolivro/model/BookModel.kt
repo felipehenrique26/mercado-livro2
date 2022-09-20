@@ -10,6 +10,7 @@ class BookModel (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? =null,
+
     @Column(name = "name")
     var name: String = "",
 

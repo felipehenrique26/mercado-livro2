@@ -10,6 +10,7 @@ class BookServices(
 ) {
     fun create(book: BookModel) {
         bookRepository.save(book)
+
     }
 
 }
