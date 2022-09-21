@@ -20,30 +20,12 @@ class CustomersServices(val customersRepository: CustomersRepository) {
     }
 
     fun getById(id: Int): CustomersModel {
-        /* var respostaCustomers = mutableListOf<Usuario>()
-         if (customers.isNotEmpty()) {
-             respostaCustomers = if (customers.get(0).id == codigo) {
-                 customers
-             } else {
-                 respostaCustomers
-             }customers.filter { it.id == id }.first()
-         }*/
 
         return customersRepository.findById(id).orElseThrow()
     }
 
     fun create(usuario: CustomersModel) {
 
-
-       // val id = if (customers.isEmpty()) {
-         //   1
-       // } else {
-         //   customers.last().id!!.toInt() + 1
-       // }
-
-       //usuario.id = id
-
-        //customers.add(usuario)
         customersRepository.save(usuario)
 
     }
