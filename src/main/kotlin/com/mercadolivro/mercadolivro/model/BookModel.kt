@@ -6,7 +6,7 @@ import javax.persistence.*
 import kotlin.properties.Delegates
 
 @Entity(name = "book")
-class BookModel (
+data class BookModel (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? =null,
@@ -19,12 +19,11 @@ class BookModel (
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    var status: BookStatus?,
+    var status: BookStatus?=null,
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     var customer:CustomersModel ?= null
-    )
-{
+    ){
 
 }
