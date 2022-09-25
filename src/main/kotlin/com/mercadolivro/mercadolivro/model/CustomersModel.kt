@@ -1,5 +1,6 @@
 package com.mercadolivro.mercadolivro.model
 
+import com.mercadolivro.mercadolivro.enum.CustomerStatus
 import javax.persistence.*
 import kotlin.properties.Delegates
 
@@ -13,6 +14,11 @@ class CustomersModel (
     var nome: String = "",
 
     @Column(name = "email", nullable = true , unique = true)
-    var email: String = ""){
+    var email: String = "",
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    var status : CustomerStatus
+){
 
 }

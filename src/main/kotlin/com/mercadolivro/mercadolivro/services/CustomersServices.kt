@@ -1,11 +1,15 @@
 package com.mercadolivro.mercadolivro.services
 
+import com.mercadolivro.mercadolivro.enum.CustomerStatus
+import com.mercadolivro.mercadolivro.enum.Erros
+import com.mercadolivro.mercadolivro.exception.NotFoundException
 import com.mercadolivro.mercadolivro.model.CustomersModel
 import com.mercadolivro.mercadolivro.repository.CustomersRepository
 import org.springframework.stereotype.Service
 
 @Service
-class CustomersServices(val customersRepository: CustomersRepository) {
+class CustomersServices(val customersRepository: CustomersRepository,
+val bookServices: BookServices) {
 
     //val customers = mutableListOf<CustomersModel>()
 
@@ -21,7 +25,7 @@ class CustomersServices(val customersRepository: CustomersRepository) {
 
     fun getById(id: Int): CustomersModel {
 
-        return customersRepository.findById(id).orElseThrow()
+        return customersRepository.findById(id).orElseThrow{NotFoundException(Erros.ML101.message.format(id),Erros.ML101.code)}
     }
 
     fun create(usuario: CustomersModel) {
@@ -33,7 +37,7 @@ class CustomersServices(val customersRepository: CustomersRepository) {
     fun update(usuario: CustomersModel) {
 
         if (!customersRepository.existsById(usuario.id!!)){
-            throw Exception()
+            throw NotFoundException(Erros.ML101.message.format(usuario.id),Erros.ML101.code)
         }
 
         customersRepository.save(usuario)
@@ -47,11 +51,10 @@ class CustomersServices(val customersRepository: CustomersRepository) {
 
     fun delete(id: Int) {
 
-        if (!customersRepository.existsById(id!!)){
-            throw Exception()
-        }
+       val customer = getById(id)
+        bookServices.deleteByCustomer(customer)
         //customers.removeIf { it.id == id }
-
-        customersRepository.deleteById(id)
+        customer.status = CustomerStatus.INATIVO
+        customersRepository.save(customer)
     }
 }

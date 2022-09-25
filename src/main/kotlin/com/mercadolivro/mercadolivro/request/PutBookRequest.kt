@@ -2,10 +2,9 @@ package com.mercadolivro.mercadolivro.request
 
 import java.math.BigDecimal
 
-class PutBookRequest(
+data class PutBookRequest(
     var name:String,
-    var price: BigDecimal,
-    var id: Int
+    var price: BigDecimal
 ) {
 
 }
