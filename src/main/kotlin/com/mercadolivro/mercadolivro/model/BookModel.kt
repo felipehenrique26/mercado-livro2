@@ -28,8 +28,9 @@ data class BookModel(
     @Enumerated(EnumType.STRING)
     var status: BookStatus?=null
         set(value){
-            if (field == BookStatus.CANCELADO || field == BookStatus.DELETADO)
-                throw BadRequestException(Erros.ML102.message.format(field),Erros.ML102.code)
+            if (field == BookStatus.CANCELADO || field == BookStatus.DELETADO) {
+                throw BadRequestException(Erros.ML102.message.format(field), Erros.ML102.code)
+            }
             field = value
         }
 
@@ -40,6 +41,7 @@ data class BookModel(
                 customer: CustomersModel?=null):this(id, name, price, customer){
                 this.status = status
                 }
+
 
 
 }
